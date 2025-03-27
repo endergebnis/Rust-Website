@@ -1,0 +1,69 @@
+<h1>Login</h1>
+<form id="login-form">
+    <input type="text" id="login-username" name="username" placeholder="Benutzername" required>
+    <input type="password" id="login-password" name="password" placeholder="Passwort" required>
+    <button type="submit">Login</button>
+</form>
+
+<h2>Registrieren</h2>
+<form id="register-form">
+    <input type="text" id="register-username" name="username" placeholder="Benutzername" required>
+    <input type="password" id="register-password" name="password" placeholder="Passwort" required>
+    <button type="submit">Registrieren</button>
+</form>
+
+<script>
+    // Handle login form submission
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Login response:", data);
+            alert(data);  // Alert the server's response (token or error message)
+        })
+        .catch(error => {
+            console.error("Error during login:", error);
+        });
+    });
+
+    // Handle registration form submission
+    document.getElementById("register-form").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        const username = document.getElementById("register-username").value;
+        const password = document.getElementById("register-password").value;
+
+        fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Registration response:", data);
+            alert(data);  // Alert the server's response
+        })
+        .catch(error => {
+            console.error("Error during registration:", error);
+        });
+    });
+</script>
