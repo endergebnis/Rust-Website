@@ -13,9 +13,8 @@
 </form>
 
 <script>
-    // Handle login form submission
     document.getElementById("login-form").addEventListener("submit", function(event) {
-        event.preventDefault();  // Prevent the default form submission
+        event.preventDefault();
 
         const username = document.getElementById("login-username").value;
         const password = document.getElementById("login-password").value;
@@ -33,16 +32,15 @@
         .then(response => response.json())
         .then(data => {
             console.log("Login response:", data);
-            alert(data);  // Alert the server's response (token or error message)
+            alert(data);
         })
         .catch(error => {
             console.error("Error during login:", error);
         });
     });
 
-    // Handle registration form submission
     document.getElementById("register-form").addEventListener("submit", function(event) {
-        event.preventDefault();  // Prevent the default form submission
+        event.preventDefault();
 
         const username = document.getElementById("register-username").value;
         const password = document.getElementById("register-password").value;
@@ -60,7 +58,7 @@
         .then(response => response.json())
         .then(data => {
             console.log("Registration response:", data);
-            alert(data);  // Alert the server's response
+            alert(data);
         })
         .catch(error => {
             console.error("Error during registration:", error);
